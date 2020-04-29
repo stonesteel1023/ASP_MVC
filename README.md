@@ -1,6 +1,9 @@
 # ASP_MVC
 study for mvc pattern in classic asp
 
+# DB connection
+- connectstring.asp -> db.asp
+- MSSQL로 설정되어있는 것 oracle 11c로 바꿔보기
 
 ## Model
 - Attachment.asp
