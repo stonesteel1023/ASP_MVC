@@ -1,25 +1,30 @@
 <%
 
-dim oConn 
-set oConn = Nothing
+dim Conn
+set Conn = Nothing
 
 
 public function DbOpenConnection()
-   if oConn is nothing then
-      set oConn = CreateObject("ADODB.Connection")
-      oConn.Mode = 3
-      oConn.ConnectionString = connectionString
-      oConn.Open
+'      set oConn = CreateObject("ADODB.Connection")
+'      oConn.Mode = 3
+'      oConn.ConnectionString = connectionString'
+      Conn = Server.CreateObject("ADODB.Connection")
+      Conn.cursorlocation=adUseClient
+      ' requires use of adovbs.inc; numeric value is 3
+      DSNTest="Provider=MSDAORA.1;Password=tiger;User ID=C##STONESTEEL;Data Source=localhost"
+      Conn.open DSNtest
+      'oConn.Open
    end if
-   set DbOpenConnection = oConn
+   'set DbOpenConnection = oConn
+   set DbOpenConnection = Conn
 end function
 
 public function DbCloseConnection()
-   if not oConn is nothing Then           
-      oConn.Close                     
-      set oConn = nothing
+   if not Conn is nothing Then
+      Conn.Close
+      set Conn = nothing
    End If
-   set DbCloseConnection = oConn
+   set DbCloseConnection = Conn
 end function
 
 public function DbExecute(sql)
